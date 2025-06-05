@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Calculator Intake Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-logo">Chris's Calculators</div>
+        <div class="nav-center">
+            <div class="nav-item">Vancomycin</div>
+            <div class="nav-item">Aminoglycosides</div>
+            <div class="nav-item">Warfarin</div>
+        </div>
+    </div>
+    
+    <h1 class="calc-header">Vancomycin Initial Dosing</h1>
+
+    <div class="calc-container">
+        <div class="patient-container">
+        <h2 class="section-title">Patient Information</h2>
+            
+            <form class="patient-form">
+                <div class="form-row">
+                    <label for="age">Age (years)</label>
+                    <input type="number" id="age" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="gender">Gender</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="gender" value="male" required>
+                            <span>Male</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female">
+                            <span>Female</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" step="any" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="tbw">Total Body Weight (kg)</label>
+                    <input type="number" id="tbw" step="any" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="crcl">CrCl (mL/min)</label>
+                    <input type="number" id="crcl" step="any" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="gender">Critically Ill</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="critically-ill" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="critically-ill" value="no">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+                    
+                
+                <div class="form-row">
+                    <label for="indication">Indication</label>
+                    <select id="indication" required></select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="dialysis-info">
+                        <label for="dialysis">Dialysis Status</label>
+                        <span class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill=purple class="bi bi-question-circle-fill" viewBox="0 0 16 16"> <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/> </svg>
+                            <div class="info-popup">
+                                <p>CAPD: Dialysate is placed into the abdomen, dwells for several hours, then is drained.  This occurs multiple times a day.</p>
+                                <p>APD: Uses a cycler/machine to perform the exchanges at night.</p>
+                                <p>CRRT Tolerance: Patients experiencing < 4 hours of therapy interruption in a 24 hour period are considered to be "tolerating" CRRT.</p>
+                            </div>
+                        </span>
+                    </div>
+                    <select id="dialysis" required></select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="buttons">
+                        <button type="submit" id="submit-btn">Submit</button>
+                        <button type="button" id="clear-btn">Clear</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        
+        <div class="output-container">
+            <div class="dosing">
+                <h2 class="section-title">Dosing Recommendations</h2>
+                <div class="dose-item">
+                  <span class="label">Loading Dose:</span>
+                  <span class="value" id="loading-dose"></span>
+                </div>
+                <div class="dose-item">
+                  <span class="label">Maintenance Dose:</span>
+                  <span class="value" id="maintenance-dose"></span>
+                </div>
+                <div class="dose-item">
+                  <span class="label">Initial Labs:</span>
+                  <span class="value" id="initial-labs"></span>
+                </div>
+            </div>
+            
+            
+            <div class="details">
+                <h2 class="section-title">Calculation Details</h2>
+                
+                <div class="detail-item">
+                  <span class="label">Ideal Body Weight:</span>
+                  <span class="value" id="ibw"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Adjusted Body Weight:</span>
+                  <span class="value" id="adj-bw"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Body Mass Index:</span>
+                  <span class="value" id="bmi"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Loading Dose Weight Used:</span>
+                  <span class="value" id="ld-weight"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Maintenance Dose Weight Used:</span>
+                  <span class="value" id="md-weight"></span>
+                </div>
+
+
+                <div class="detail-item">
+                  <span class="label">Loading Dose:</span>
+                  <span class="value" id="ld-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Maintenance Dose:</span>
+                  <span class="value" id="md-value"></span>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

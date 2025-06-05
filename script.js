@@ -420,21 +420,24 @@ const App = {
     
     },
     
-    handleClear(event) {
-        event.preventDefault();
-        document.getElementById('loading-dose').textContent = '';
-        document.getElementById('maintenance-dose').textContent = '';
-        document.getElementById('initial-labs').textContent ='';
-        
-        document.getElementById('ibw').textContent = '';
-        document.getElementById('adj-bw').textContent = '';
-        document.getElementById('bmi').textContent = '';
-        document.getElementById('ld-weight').textContent = '';
-        document.getElementById('md-weight').textContent = '';
-        document.getElementById('ld-value').textContent = '';
-        document.getElementById('md-value').textContent = '';
+  handleClear(event) {
+    event.preventDefault();
+    document.querySelector(".patient-form").reset(); 
+    document.getElementById('loading-dose').textContent = '';
+    document.getElementById('maintenance-dose').textContent = '';
+    document.getElementById('initial-labs').textContent ='';
+    document.getElementById("indication").value = '';
+    document.getElementById("dialysis").value = '';
     
-    },
+    document.getElementById('ibw').textContent = '';
+    document.getElementById('adj-bw').textContent = '';
+    document.getElementById('bmi').textContent = '';
+    document.getElementById('ld-weight').textContent = '';
+    document.getElementById('md-weight').textContent = '';
+    document.getElementById('ld-value').textContent = '';
+    document.getElementById('md-value').textContent = '';
+  
+  },
   
 //   handleFormSubmit(event) {
 //         event.preventDefault();

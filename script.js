@@ -360,7 +360,7 @@ const App = {
   },
 
   attachEventListeners() {
-    document.getElementById("submit-btn").addEventListener("click", this.handleFormSubmit);
+    document.querySelector(".patient-form").addEventListener("submit", this.handleFormSubmit);
     document.getElementById("clear-btn").addEventListener("click", this.handleClear);
     // const form = document.querySelector(".patient-form")
     // form.addEventListener("submit", this.handleFormSubmit);

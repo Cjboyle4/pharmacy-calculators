@@ -421,7 +421,7 @@ const App = {
     },
     
     handleClear(event) {
-        
+        event.preventDefault();
         document.getElementById('loading-dose').textContent = '';
         document.getElementById('maintenance-dose').textContent = '';
         document.getElementById('initial-labs').textContent ='';

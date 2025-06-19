@@ -97,7 +97,8 @@ h1, h2, h3, h4, h5, h6, p {
 .patient-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    /*gap: 1rem;*/
+    gap: 10px;
 }
 
 /*.output-container {*/
@@ -171,7 +172,7 @@ h1, h2, h3, h4, h5, h6, p {
     width: 100%;
     border-radius: 5px;
     padding: 8px 16px; /* add padding here */
-        border: 1px solid #c0c0c0;
+    border: 1px solid #c0c0c0;
 }
 
 .radio-group label {
@@ -252,18 +253,20 @@ select:focus {
   flex-direction: column;
   /*justify-content: center;*/
   /*align-items: center;*/
-  margin-bottom: 16px;   
+  margin-bottom: 5px;   
   padding: 10px 12px;
   /*background: rgba(255, 255, 255, 0.1);*/
   border-radius: 6px;
+
 }
 
 
 .dose-item .label {
   /*font-weight: 600;*/
   /*font-size: 1rem;*/
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   /*color: #f0e6ff; */
+
 }
 
 .dose-item .value {
@@ -284,7 +287,7 @@ select:focus {
 .detail-item {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 4px;
 }
 
 .patient-container .section-title {

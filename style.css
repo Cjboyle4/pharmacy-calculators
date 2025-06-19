@@ -18,12 +18,12 @@ h1, h2, h3, h4, h5, h6, p {
     justify-content: space-between;
     align-items: flex-end;
     padding: 10px 20px;
-    height: 70px;
+    height: 60px;
     position: relative;
     margin-bottom: 20px;
 
     background-color: white; /* or your desired bg */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
     border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* subtle underline */
 }
 
@@ -74,7 +74,7 @@ h1, h2, h3, h4, h5, h6, p {
     display: flex;
     justify-content: center;
     font-size: 24px;
-    padding: 10px;
+    padding: 0px;
 }
 
 .calc-container {
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6, p {
     justify-content: center;
     gap: 20px;
     padding: 20px;
-        max-width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -342,4 +342,3 @@ select:focus {
   border-style: solid;
   border-color: #333 transparent transparent transparent;
 } 
-

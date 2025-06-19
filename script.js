@@ -1,3 +1,4 @@
+
 class Patient {
   constructor(age, gender, height, tbw, crcl, criticallyIll, indicationKey, dialysisKey) {
     this.age = age;
@@ -186,7 +187,7 @@ class Patient {
       maintenanceDoseValue = 0;
     } else if (this.dialysisKey === 'crrtTolerated') {
       maintenanceDoseValue = 15;
-    } else if (highDoseIndicationKeys.includes(this.indicationKey) && this.age > 65) {
+    } else if (highDoseIndicationKeys.includes(this.indicationKey) && this.age < 65) {
       maintenanceDoseValue = 15;
     };
     
@@ -247,7 +248,7 @@ class Patient {
     } else if (this.dialysisKey === 'capd' || this.dialysisKey === 'apd') {
       firstLevel = 'Random level 48-72 hours after loading dose';
     } else if (this.dialysisKey === 'crrtTolerated') {
-        firstLevel = 'Trough Level prior to 3rd or 4th dose';
+        firstLevel = 'Trough Level 30 minutes prior to 3rd or 4th dose';
     } else if (this.dialysisKey === 'crrtNotTolerated') {
         firstLevel = 'Random level 12-24 hours after loading dose';
     }
@@ -272,7 +273,7 @@ class Patient {
 
     if (this.maintenanceDose !== 0) {
       if (this.maintenanceDoseStart !== null) {
-        maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hrs after load`;
+        maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hrs after loading dose`;
       } else {
         maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}`;
       };

@@ -1,5 +1,3 @@
-// your code goes here
-
 class Patient {
   constructor(age, gender, height, tbw, crcl, criticallyIll, indicationKey, dialysisKey) {
     this.age = age;
@@ -237,7 +235,7 @@ class Patient {
     if (this.crcl >= 35) {
       firstLevel = 'Trough level 30 minutes prior to the 4th or 5th dose';
     } else if (this.dialysisKey === 'nonHD' && this.crcl < 35) {
-      firstLevel = 'Random level at 24-36 hours';
+      firstLevel = 'Random level 24-36 hours after loading dose';
     } else if (this.dialysisKey === 'regHD') {
       firstLevel = 'Pre-dialysis random level prior to the 2nd or 3rd maintenance dose';
     } else if (this.dialysisKey === 'irregHD') {
@@ -247,8 +245,12 @@ class Patient {
                   Post-dialysis level is preferred, and is checked 4-6 hours after dialysis. 
                   If no sessions are scheduled within 48 hours, consider random level at 48 hours`;
     } else if (this.dialysisKey === 'capd' || this.dialysisKey === 'apd') {
-      firstLevel = 'Random level at 48-72 hours';
-    } 
+      firstLevel = 'Random level 48-72 hours after loading dose';
+    } else if (this.dialysisKey === 'crrtTolerated') {
+        firstLevel = 'Trough Level prior to 3rd or 4th dose';
+    } else if (this.dialysisKey === 'crrtNotTolerated') {
+        firstLevel = 'Random level 12-24 hours after loading dose';
+    }
     
     this.firstLevel = firstLevel
     return this.firstLevel ;
@@ -405,9 +407,22 @@ const App = {
     const patient = new Patient(age, gender, height, tbw, crcl, criticallyIll, indication, dialysis);
     console.log("Patient created:", patient);
     
+    document.getElementById('loading-dose-label').textContent = 'Loading Dose:';
+    document.getElementById('maintenance-dose-label').textContent = 'Maintenance Dose:';
+    document.getElementById('initial-labs-label').textContent = 'Initial Labs:';
+    
     document.getElementById('loading-dose').textContent = patient.loadingDoseText;
     document.getElementById('maintenance-dose').textContent = patient.maintenanceDoseText;
     document.getElementById('initial-labs').textContent = patient.firstLevelText;
+    
+    document.getElementById('ibw-label').textContent = 'Ideal Body Weight:';
+    document.getElementById('adj-bw-label').textContent = 'Adjusted Body Weight:';
+    document.getElementById('bmi-label').textContent = 'Body Mass Index:';
+    document.getElementById('ld-weight-label').textContent = 'Loading Dose Weight Used:';
+    document.getElementById('md-weight-label').textContent = 'Maintenance Dose Weight Used:';
+    document.getElementById('ld-value-label').textContent = 'Loading Dose:';
+    document.getElementById('md-value-label').textContent = 'Maintenance Dose:';
+    document.getElementById('target-trough-label').textContent = 'Target Trough:';
     
     document.getElementById('ibw').textContent = patient.ibw + ' kg';
     document.getElementById('adj-bw').textContent = patient.dosingWt + ' kg';
@@ -416,13 +431,29 @@ const App = {
     document.getElementById('md-weight').textContent = patient.dosingWt + ' kg';
     document.getElementById('ld-value').textContent = patient.loadingDoseValue + ' mg/kg';
     document.getElementById('md-value').textContent = patient.maintenanceDoseValue + ' mg/kg';
+    document.getElementById('target-trough-value').textContent = patient.targetTrough + ' mcg/ml';
     document.getElementById('output-container').style.display = 'block';
     
     },
     
     handleClear(event) {
         event.preventDefault();
-        document.querySelector(".patient-form").reset(); 
+        document.querySelector(".patient-form").reset();
+        
+        document.getElementById('loading-dose-label').textContent = '';
+        document.getElementById('maintenance-dose-label').textContent = '';
+        document.getElementById('initial-labs-label').textContent = '';
+        
+        document.getElementById('ibw-label').textContent = '';
+        document.getElementById('adj-bw-label').textContent = '';
+        document.getElementById('bmi-label').textContent = '';
+        document.getElementById('ld-weight-label').textContent = '';
+        document.getElementById('md-weight-label').textContent = '';
+        document.getElementById('ld-value-label').textContent = '';
+        document.getElementById('md-value-label').textContent = '';
+        document.getElementById('target-trough-label').textContent = '';
+            
+        
         document.getElementById('loading-dose').textContent = '';
         document.getElementById('maintenance-dose').textContent = '';
         document.getElementById('initial-labs').textContent ='';
@@ -436,9 +467,10 @@ const App = {
         document.getElementById('md-weight').textContent = '';
         document.getElementById('ld-value').textContent = '';
         document.getElementById('md-value').textContent = '';
+        document.getElementById('target-trough-value').textContent = '';
     
     },
-  
+
 //   handleFormSubmit(event) {
 //         event.preventDefault();
 

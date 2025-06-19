@@ -1,4 +1,3 @@
-
 class Patient {
   constructor(age, gender, height, tbw, crcl, criticallyIll, indicationKey, dialysisKey) {
     this.age = age;
@@ -118,6 +117,9 @@ class Patient {
   
     if (this.indication === 'cns' && this.crcl >= 35 && this.bmi < 40) {
       loadingDoseValue = 25;
+      
+    } else if (this.crcl < 35 || this.dialysisKey !== 'nonHD') {
+        loadingDoseValue = 20;
       
     } else if (noLoadIndicationKeys.includes(this.indicationKey)) {
       loadingDoseValue = 0;
@@ -514,5 +516,6 @@ document.addEventListener("DOMContentLoaded", () => App.initialize());
 // );
 
 // console.log(patient);
+
 
 

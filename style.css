@@ -84,6 +84,7 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    /*margin: 0 auto 0px auto;*/
 }
 
 .patient-container {
@@ -345,3 +346,15 @@ select:focus {
   border-style: solid;
   border-color: #333 transparent transparent transparent;
 } 
+
+.disclaimer {
+    display: flex;
+    font-size: 12px;
+    font-weight: normal;
+    color: gray;
+    padding: 0px 20px;
+    max-width: 1200px;
+    /*margin: 0 auto;*/
+    margin: -10px auto 10px auto;
+    
+}

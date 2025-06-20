@@ -1,3 +1,4 @@
+
 class Patient {
   constructor(age, gender, height, tbw, crcl, criticallyIll, indicationKey, dialysisKey) {
     this.age = age;
@@ -273,15 +274,27 @@ class Patient {
       loadingDoseText = 'No Loading Dose';
     }
 
+    // if (this.maintenanceDose !== 0) {
+    //   if (this.maintenanceDoseStart !== null) {
+    //     maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hrs after loading dose`;
+    //   } else {
+    //     maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}`;
+    //   }
+    // } else {
+    //   maintenanceDoseText = 'Guided by Levels'
+    // }
+    
     if (this.maintenanceDose !== 0) {
-      if (this.maintenanceDoseStart !== null) {
-        maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hrs after loading dose`;
+      if (this.maintenanceDoseStart !== null && this.loadingDose !== 0) {
+        maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hours after loading dose`;
+      } else if (this.maintenanceDoseStart !== null && this.loadingDose == 0) {
+        maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, with first two doses separated by ${this.maintenanceDoseStart} hours`;
       } else {
         maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}`;
-      };
+      }
     } else {
-      maintenanceDoseText = 'Guided by Levels'
-    };
+      maintenanceDoseText = 'Guided by Levels';
+    }
 
     if (this.firstLevel !== null) {
       firstLevelText = this.firstLevel;

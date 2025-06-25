@@ -116,7 +116,7 @@ class Patient {
     const noLoadIndicationKeys = ['gyno', 'surgical'];
     const semiNoLoadIndicationKeys = ['boneAndJoint', 'eent', 'urinary', 'intraAbdominal', 'sstiNonNecrotizing'];
   
-    if (this.indication === 'cns' && this.crcl >= 35 && this.bmi < 40) {
+    if (this.indicationKey === 'cns' && this.crcl >= 35 && this.bmi < 40) {
       loadingDoseValue = 25;
       
     } else if (this.crcl < 35 || this.dialysisKey !== 'nonHD') {

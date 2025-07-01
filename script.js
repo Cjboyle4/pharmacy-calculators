@@ -1,4 +1,3 @@
-
 class Patient {
   constructor(age, gender, height, tbw, crcl, criticallyIll, indicationKey, dialysisKey) {
     this.age = age;
@@ -248,7 +247,7 @@ class Patient {
       firstLevel = `Pre or post dialysis random level if next dialysis session is within 48 hours.  
                   Post-dialysis level is preferred, and is checked 4-6 hours after dialysis. 
                   If no sessions are scheduled within 48 hours, consider random level at 48 hours`;
-    } else if (this.dialysisKey === 'capd' || this.dialysisKey === 'apd') {
+    } else if (this.dialysisKey === 'capd' || this.dialysisKey === 'apd' || this.dialysisKey === 'pd') {
       firstLevel = 'Random level 48-72 hours after loading dose';
     } else if (this.dialysisKey === 'crrtTolerated') {
         firstLevel = 'Trough Level 30 minutes prior to 3rd or 4th dose';
@@ -343,9 +342,9 @@ function getDialysisOptions() {
     sled : 'Sustained Low Efficiency Dialysis (SLED)',
     dsd: ' Daily Slow Dialysis (DSD)',
     pirrt: 'Prolonged Intermittent Renal Replacement Therapy (PIRRT)',
-    capd: 'Continuous Ambulatory Peritoneal Dialysis (CAPD)',
-    apd: 'Automated Peritoneal Dialysis (APD)',
-    // pd: 'Peritoneal Dialysis',
+    // capd: 'Continuous Ambulatory Peritoneal Dialysis (CAPD)',
+    // apd: 'Automated Peritoneal Dialysis (APD)',
+    pd: 'Peritoneal Dialysis (PD)',
     crrtTolerated: 'Continuous Renal Replacement Therapy (CRRT) - Tolerated',
     crrtNotTolerated: 'Continuous Renal Replacement Therapy (CRRT) - Not Tolerated',
   }
@@ -529,6 +528,5 @@ document.addEventListener("DOMContentLoaded", () => App.initialize());
 // );
 
 // console.log(patient);
-
 
 

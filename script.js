@@ -57,7 +57,7 @@ class Patient {
     if (this.indicationKey === 'cns') {
       this.targetTrough = '15-20';
     } else {
-      this.targetTrough = '10-15'
+      this.targetTrough = '10-15';
     }
       
     return this.targetTrough;
@@ -91,14 +91,16 @@ class Patient {
     } else {
         const adjBw = ibw + (0.4 * (tbw - ibw));
         dosingWt = adjBw;
-    };
+    }
 
     this.dosingWt = Math.round(dosingWt * 100) / 100;
     return this.dosingWt;
   }
   
   calcBMI () {
-    const bmi = this.tbw / (this.height/100) ** 2;
+    //const bmi = this.tbw / (this.height/100) ** 2;
+    const bmi = this.tbw / Math.pow(this.height / 100, 2);
+
     this.bmi = Math.round(bmi * 100) / 100;
     return this.bmi;
   }
@@ -128,7 +130,7 @@ class Patient {
       if ( this.crcl >= 35 && !this.criticallyIll && this.bmi < 40) {
         loadingDoseValue = 0;
       }
-    };
+    }
     
     this.loadingDoseValue = loadingDoseValue;
   
@@ -191,7 +193,7 @@ class Patient {
       maintenanceDoseValue = 15;
     } else if (highDoseIndicationKeys.includes(this.indicationKey) && this.age < 65) {
       maintenanceDoseValue = 15;
-    };
+    }
     
     // console.log('Maintenance Dose Value: ', maintenanceDoseValue);
     this.maintenanceDoseValue = maintenanceDoseValue;
@@ -213,7 +215,7 @@ class Patient {
       freq = {24: 'every 24 hours'};
     } else if (this.crcl >= 65) {
       freq = {12: 'every 12 hours'};
-    };
+    }
     
     this.maintenanceFreq = freq;
     return this.maintenanceFreq;
@@ -255,7 +257,7 @@ class Patient {
         firstLevel = 'Random level 12-24 hours after loading dose';
     }
     
-    this.firstLevel = firstLevel
+    this.firstLevel = firstLevel;
     return this.firstLevel ;
   }
 
@@ -272,21 +274,11 @@ class Patient {
     } else {
       loadingDoseText = 'No Loading Dose';
     }
-
-    // if (this.maintenanceDose !== 0) {
-    //   if (this.maintenanceDoseStart !== null) {
-    //     maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hrs after loading dose`;
-    //   } else {
-    //     maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}`;
-    //   }
-    // } else {
-    //   maintenanceDoseText = 'Guided by Levels'
-    // }
     
     if (this.maintenanceDose !== 0) {
       if (this.maintenanceDoseStart !== null && this.loadingDose !== 0) {
         maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, initiated ${this.maintenanceDoseStart} hours after loading dose`;
-      } else if (this.maintenanceDoseStart !== null && this.loadingDose == 0) {
+      } else if (this.maintenanceDoseStart !== null && this.loadingDose == 0 && this.indicationKey !== 'surgical') {
         maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}, with first two doses separated by ${this.maintenanceDoseStart} hours`;
       } else {
         maintenanceDoseText = `${this.maintenanceDose} mg ${freqText}`;
@@ -347,7 +339,7 @@ function getDialysisOptions() {
     pd: 'Peritoneal Dialysis (PD)',
     crrtTolerated: 'Continuous Renal Replacement Therapy (CRRT) - Tolerated',
     crrtNotTolerated: 'Continuous Renal Replacement Therapy (CRRT) - Not Tolerated',
-  }
+  };
 }
 
 const App = {
@@ -485,48 +477,9 @@ const App = {
         document.getElementById('target-trough-value').textContent = '';
     
     },
-
-//   handleFormSubmit(event) {
-//         event.preventDefault();
-
-//     const age = parseInt(document.getElementById("age").value, 10);
-//     const gender = document.getElementById("gender").value;
-//     const height = parseFloat(document.getElementById("height").value);
-//     const tbw = parseFloat(document.getElementById("tbw").value);
-//     const crcl = parseFloat(document.getElementById("crcl").value);
-//     const criticallyIllValue = document.querySelector('input[name="criticallyIll"]:checked').value;
-//     const criticallyIll = criticallyIllValue === "true";
-//     const indication = document.getElementById("indication").value;
-//     const dialysis = document.getElementById("dialysis").value;
-
-//     const patient = new Patient(age, gender, height, tbw, crcl, criticallyIll, indication, dialysis);
-//     console.log("Patient created:", patient);
-
-//     document.getElementById('loading-dose').textContent = patient.loadingDoseText;
-//     document.getElementById('maintenance-dose').textContent = patient.maintenanceDoseText;
-//     document.getElementById('first-level').textContent = patient.firstLevelText;
-//     document.getElementById('output-container').style.display = 'block';
-
-
-//   },
-  
 };
 
 document.addEventListener("DOMContentLoaded", () => App.initialize());
 
-
-// const patient = new Patient(
-//   age=62, 
-//   gender='male', 
-//   height=188, 
-//   tbw=95.2, 
-//   crcl=60, 
-//   criticallyIll=false, 
-//   indication='Blood Stream Infection',
-//   // indication='Surgical Prophylaxis',
-//   dialysis = 'Non-Dialysis',
-// );
-
-// console.log(patient);
 
 
